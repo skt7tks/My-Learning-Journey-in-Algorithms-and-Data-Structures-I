@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+int n=9,m=9,BIT[1001][1001];
+void update(int x, int y, int delta) {
+    for (int i = x; i < n; i += (i & -i)) {
+        for (int j = y; j < m; j += (j & -j)) {
+            BIT[i][j] += delta;cout<<i<<" "<<j<<endl;
+        }
+    }
+}
+int query(int x, int y) {
+    int sum = 0;
+    for (int i = x; i > 0; i -= (i & -i)) {
+        for (int j = y; j > 0; j -= (j & -j)) {
+            sum += BIT[i][j];
+        }
+    }
+    return sum;
+}
+int range_query(int x1, int y1, int x2, int y2) {
+    return query(x2,y2)-query(x1-1,y2)-query(x2,y1-1)+query(x1-1, y1-1);
+}
+int main() {
+    for (int i = 1; i <= n; i++)
+        for (int j = 1; j <= m; j++)
+            update(i, j, 1);
+    for (int i = 1; i <= n; i++){
+        for (int j = 1; j <= m; j++){
+            printf ("%4d",BIT[i][j]);
+        }cout<<endl;}
+
+
+ფენვიკის ხით შესაძლებელია სწრაფად დავითვალოთ  ელემენტთა ჯამი რაიმე მართკუთხედზე ორგანზომილებიან მასივში.
