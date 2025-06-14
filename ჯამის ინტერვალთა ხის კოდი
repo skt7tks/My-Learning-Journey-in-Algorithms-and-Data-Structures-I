@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
+int a,s,d,f,g,h,j,k,l,i,n,m;
+struct tre{
+    tre *l,*r;
+    int jami;
+    tre(){
+        l=NULL; r=NULL;  jami=0;
+         }
+};
+
+void upd(tre* &t,int val,int idx,int lf = 0,int rg = n){
+   if(t==NULL) t=new tre();
+   t->jami+=val;
+   if(rg-lf==1) return;
+   if(idx<(lf+rg)/2) upd(t->l,val,lf,(lf+rg)/2);
+            else upd(t->r,val,(lf+rg)/2,rg);
+    }
+
+int ans(tre* &t,int lf,int rg){
+    if(t==NULL) return 0;
+if(lf>=a && rg<=s) {return t->jami;}
+    if(lf>=s || rg<=a) return 0;
+    return ans(t->l,lf,(lf+rg)/2)+ans(t->r, (lf+rg)/2,rg);
+main(){
+cin>>n;
+cin>>m;
+tre* root=NULL;
+for(i=0;i<n;i++){
+    scanf("%d",&a);
+    upd(root,a,i);
+}
+
+
+for(i=0;i<m;i++){
+    scanf("%d%d",&a,&s);
+    a--;s--;
+    printf("%d\n",ans(root,0,n));
+}
+
+}
