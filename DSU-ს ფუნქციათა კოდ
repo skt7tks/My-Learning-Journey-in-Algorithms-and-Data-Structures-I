@@ -1,0 +1,29 @@
+-- სიმრავლის შექმნა
+void MakeSet(int x){
+    a[x] = x;
+}
+
+--სათავის ძებნა
+int Find(int x){
+    if (a[x] == x) return x;
+    return a[x] = Find(a[x]);
+}
+
+--სიმრავლეთა გაერთიანება rank-ის მიხედვით
+void Union(int x, int y){
+    x = Find(x);
+    y = Find(y);
+    if (rank[x] < rank[y]) a[x] = y;
+    else  {
+        a[y] = x;
+        if (rank[x] == rank[y])
+                         ++rank[x];
+    }
+  }
+
+--გაერთიანება rank-ის გარეშე
+void Union1(int x, int y){
+    x = Find(x);
+    y = Find(y);
+    a[x] = y;
+}
