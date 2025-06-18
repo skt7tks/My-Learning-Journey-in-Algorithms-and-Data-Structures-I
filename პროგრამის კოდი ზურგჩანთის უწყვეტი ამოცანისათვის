@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef pair<double, double> item;
+bool comp_item(item& a, item& b){
+    return a.first/a.second > b.first/b.second;}
+double mx_profit(item items[], int n, double capacity){
+    double mx= 0;
+    sort(items, items+n, comp_item);
+    for(int i= 0; i<n; i++){
+        if(items[i].second <= capacity){
+            capacity -= items[i].second; mx+= items[i].first; }
+        else{
+            mx+= items[i].first/items[i].second * capacity;
+            capacity= 0; break; }
+    }
+    return mx;
+}
+int main( ) {
+    int n;   item items[100];  double capacity;
+    cin>>n>>capacity;
+    for(int i=0; i<n; i++){
+        cin>>items[i].first>>items[i].second;  }
+    cout<< mx_profit(items, n, capacity) <<endl;
+}
