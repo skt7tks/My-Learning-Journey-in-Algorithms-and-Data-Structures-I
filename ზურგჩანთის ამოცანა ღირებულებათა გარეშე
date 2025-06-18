@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+    int i, j, n, ans, weight[305], W;
+    bool ar[305][100005];
+ 
+int main(){
+    cin>>W>>n;
+    for(i=0; i<n; i++){
+        cin>>weight[i];
+    }
+    ar[0][0]=1;
+    for (i=1; i<=n; i++)   {
+     for (j=0; j<=W; j++)       {
+        if (ar[i-1][j]==1 and j+weight[i-1]<=W) ar[i][j+weight[i-1]]=1;
+        if (ar[i-1][j]==1) ar[i][j]=1;
+        if (ar[i][j]==1) ans=max(ans,j);
+       }
+   }
+    cout<<ans;
+    return 0;
+}
