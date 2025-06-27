@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+using namespace std;
+int n, m, v, u, w;
+vector<pair<int, int>> g[100100];
+main() {
+    cin >> n >> m;
+    for (int i = 0; i < m; ++i) {
+        cin >> v >> u >> w; 
+        g[v].push_back({ u, w });  g[u].push_back({ v, w });
+}   }
+ 
+#include <bits/stdc++.h>
+using namespace std;
+int n,m,a,b,w;
+map < pair<int,int>, int> mp;
+vector<int>v[100005];
+int main (){
+    cin>>n>>m;
+    while (m--)    {
+        cin>>a>>b>>w;
+        v[a].push_back(b);  v[b].push_back(a);
+        mp[{a,b}]=w;        mp[{b,a}]=w;
+}   }
